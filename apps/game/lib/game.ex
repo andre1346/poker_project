@@ -12,7 +12,5 @@ defmodule Game do
       :world
 
   """
-  def hello do
-    :world
-  end
+  
 end

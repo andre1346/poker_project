@@ -18,13 +18,13 @@ retourner une liste de cartes
 	end
 
 	 def create_multiple_deck(qte) do
-	 	Cards.add_joker
+	 	Card.add_joker
 	 	|> List.duplicate(qte)
 	 	|> List.flatten
 
      end 
     def add_joker do
-    	deck=Cards.create_deck
+    	deck=Card.create_deck
     	joker=["red_joker", "black_joker"]
     	List.flatten(deck, joker)
 
@@ -68,23 +68,23 @@ retourner une liste de cartes
 	end
 
 	def create_hand(hand_size, qte) do
-		Cards.create_multiple_deck(qte)
+		Card.create_multiple_deck(qte)
 		|>Cards.shuffle
 		|>Cards.deal(hand_size)	
 	end	
 
 
 	def give_cards(qte,players) do
-		deck = Cards.create_deck
- 		newDeck = Cards.shuffle(deck)
+		deck = Card.create_deck
+ 		newDeck = Card.shuffle(deck)
 		List.duplicate(qte,players)
 		 |> Enum.with_index(1)
            
 	end
 
 	def create_multiplayer_game(player_amount) do
-		deck = Cards.create_deck
-			|> Cards.shuffle
+		deck = Card.create_deck
+			|> Card.shuffle
             |> Enum.take(player_amount * 5) 
             |> Enum.chunk(5)
 		
@@ -93,10 +93,17 @@ retourner une liste de cartes
 
 
 	def deal_multiplayer_hand(deck, hand_size, player_amount) do 
-		Cards.deal(deck, hand_size)
-          
+		Card.deal(deck, hand_size, player_amount)
+          |> Card.shuffle
 		end
-	end
-  
+end
+
+
+	
+#voici ce quil faut reg
+		#Retourne et change cartes (hint function devrait prendre le joueur, les carte a change etc)
+		# Bet
+		# Fold/passer
+		# a qui le tour
+		#
  
-  

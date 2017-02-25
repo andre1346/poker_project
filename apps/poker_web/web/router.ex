@@ -17,10 +17,22 @@ defmodule PokerWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+   end
+  scope "/auth", Poker_project do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request
+   get "/:provider/callback", AuthController, :callback
+    end
+
+
   end
+
+
 
   # Other scopes may use custom stacks.
   # scope "/api", PokerWeb do
   #   pipe_through :api
   # end
-end
+
